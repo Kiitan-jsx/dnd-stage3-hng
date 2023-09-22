@@ -1,35 +1,28 @@
-import { useState, useEffect } from 'react';
-import useUnsplashImages from '../../hooks/useUnsplashImages';
+import React, { useState, useEffect } from 'react';
 import GalleryImage from './GalleryImage';
 import Navbar from './Navbar';
 import { Pinwheel } from "@uiball/loaders";
-
+import { db } from '../../lib/database';
 
 const GalleryPage = () => {
-  const { unsplashImages, isLoading, error } = useUnsplashImages();
   const [stateImages, setStateImages] = useState([]);
+  const [filterTag, setFilterTag] = useState(""); 
+  const [filteredImages, setFilteredImages] = useState([]);
 
   useEffect(() => {
-    if (unsplashImages && unsplashImages.length > 0) {
-      setStateImages(unsplashImages);
+    setStateImages(db);
+  }, []);
+
+  useEffect(() => {
+    if (filterTag) {
+      const filtered = stateImages.filter((image) =>
+        image.tag.toLowerCase().includes(filterTag.toLowerCase())
+      );
+      setFilteredImages(filtered);
+    } else {
+      setFilteredImages(stateImages);
     }
-  }, [unsplashImages]);
-
-  if (isLoading)
-    return (
-      <div 
-        style={{
-          width: "100%",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Pinwheel speed={1.75} />
-      </div>
-    );
-
+  }, [filterTag, stateImages]);
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
@@ -41,12 +34,18 @@ const GalleryPage = () => {
     setStateImages(reorderedImages);
   };
 
-  console.log(unsplashImages)
+  const handleFilterImages = (tagInput) => {
+    setFilterTag(tagInput.toLowerCase());
+  };
 
   return (
     <div className='bg-stone-950'>
-      <Navbar />
-      <GalleryImage images={stateImages} onDragEnd={handleDragEnd} />
+      <Navbar onFilterImages={handleFilterImages} />
+      {stateImages.length === 0 ? (
+        <Pinwheel color="#ffffff" />
+      ) : (
+        <GalleryImage images={filteredImages} onDragEnd={handleDragEnd} />
+      )}
     </div>
   );
 };

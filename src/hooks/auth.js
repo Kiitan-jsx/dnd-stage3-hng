@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import {signInWithEmailAndPassword} from "firebase/auth";
-import { useSignOut } from "react-firebase-hooks/auth";
+import {getAuth, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { GALLERY, LOGIN } from "../lib/routes";
 import { useNavigate } from "react-router-dom";
@@ -53,16 +52,26 @@ export function useLogin() {
 
 
 
-export function useLogout() {
-  const [signOut, isLogoutLoading] = useSignOut(auth);
-  const navigate = useNavigate();
-
-  async function logout() {
-    if (await signOut()) {
-      toast.success("Logout Successful!");
-      navigate(LOGIN);
-    } else toast.error("Logout Unsuccessful!");
+  function useLogout() {
+    const [isLogoutLoading, setIsLogoutLoading] = useState(false);
+    const navigate = useNavigate();
+  
+    const logout = async () => {
+      const auth = getAuth();
+  
+      try {
+        setIsLogoutLoading(true); 
+        await signOut(auth);
+        navigate(LOGIN);
+        toast.success("Logout Successful!");
+        setIsLogoutLoading(false);
+      } catch (error) {
+        setIsLogoutLoading(false);
+        toast.success("Logout Unsuccessful!");
+      }
+    };
+  
+    return { logout, isLogoutLoading };
   }
-
-  return { logout, isLogoutLoading };
-}
+  
+  export default useLogout;
