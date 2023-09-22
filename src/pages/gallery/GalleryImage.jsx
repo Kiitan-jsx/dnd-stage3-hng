@@ -28,11 +28,11 @@ const GalleryImage = ({ images, onDragEnd }) => {
                   >
                     <img
                       src={image.image}
-                      alt={`Image ${image.id}`}
+                      alt={`Imag ${image.id}`}
                       className="w-full h-full object-cover max-h-[300px]"
                     />
-                    <div className="bg-gray-500 p-2 font-rale">
-                      <h1 className="text-sm capitalize text-slate-200">
+                    <div className="bg-gray-700 p-2 font-rale">
+                      <h1 className="text-sm capitalize text-slate-200 font-bold">
                         TAGS
                       </h1>
                       <div className="flex flex-col gap-2 flex-wrap">
