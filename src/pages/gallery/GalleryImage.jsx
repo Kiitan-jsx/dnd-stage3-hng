@@ -8,7 +8,7 @@ const GalleryImage = ({ images, onDragEnd }) => {
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className="grid grid-cols-4 gap-4 mx-10"
+            className="grid grid-cols-4 gap-4 mx-10 pb-10"
             style={{
               gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
             }}
@@ -31,7 +31,7 @@ const GalleryImage = ({ images, onDragEnd }) => {
                       alt={`Image ${image.id}`}
                       className="w-full h-full object-cover max-h-[300px]"
                     />
-                    <div className="bg-gray-500 p-2">
+                    <div className="bg-gray-500 p-2 font-rale">
                       <h1 className="text-sm capitalize text-slate-200">
                         TAGS
                       </h1>
