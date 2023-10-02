@@ -8,7 +8,7 @@ const GalleryImage = ({ images, onDragEnd }) => {
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className="grid grid-cols-4 gap-4 mx-10 pb-10"
+            className="grid grid-cols-4 gap-4 mx-10 pb-10 "
             style={{
               gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
             }}
@@ -17,19 +17,19 @@ const GalleryImage = ({ images, onDragEnd }) => {
               <Draggable
                 key={image.id.toString()}
                 draggableId={image.id.toString()}
-                index={index}
+                index={index} 
               >
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className="relative p-4 rounded mb-20"
+                    className="relative p-4 rounded-2xl mb-10 border shadow-2xl border-gray-800"
                   >
                     <img
                       src={image.image}
                       alt={`Imag ${image.id}`}
-                      className="w-full h-full object-cover max-h-[300px]"
+                      className="w-full  object-cover h-[300px]"
                     />
                     <div className="bg-gray-700 p-2 font-rale">
                       <h1 className="text-sm capitalize text-slate-200 font-bold">

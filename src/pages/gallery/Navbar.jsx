@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineSearch, AiOutlineLogout } from "react-icons/ai";
 import useLogout from "../../hooks/auth";
 
@@ -16,7 +16,7 @@ export default function Navbar({ onFilterImages }) {
   };
 
   return (
-    <nav className="w-full py-3 px-3 bg-gray-800 flex items-center border-b bg-gradient-to-b from-slate-800  to-stone-950 mb-4">
+    <nav className="w-full py-4 px-3 bg-gray-800 flex items-center border-b bg-gradient-to-b from-slate-800  to-stone-950 mb-4">
       <h1 className="font-bold text-sm md:text-2xl text-white mr-3 whitespace-nowrap ">
         Drag <span className="text-gray-500">n'</span> Drop{" "}
       </h1>

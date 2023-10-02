@@ -88,7 +88,7 @@ export default function Login() {
           <div className="relative">
             <input
               type="text"
-              placeholder="Enter your email"
+              placeholder="test: user@example.com"
               className={`block ${
                 errors.email === null ? "mb-4" : "mb-0"
               } pt-2 pb-2 pr-8 pl-2 w-full rounded-md border-2 border-base focus:outline-none focus:ring focus:border-light placeholder:text-gray-500`}
@@ -114,7 +114,7 @@ export default function Login() {
           >
             <input
               type="password"
-              placeholder="Enter your password"
+              placeholder="test: 1Password"
               className="block pt-2 pb-2 pr-8 pl-2 w-full rounded-md border-2 border-base focus:outline-none focus:ring focus:border-light placeholder:text-gray-500"
               onChange={(e) => setPassword(e.target.value)}
               required
